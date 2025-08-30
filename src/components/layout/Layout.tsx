@@ -44,9 +44,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
       </header>
 
-      <main className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4 p-6">
-        {children}
-      </main>
+      <main className="m-4">{children}</main>
     </div>
   );
 }

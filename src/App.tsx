@@ -1,13 +1,14 @@
 
-import './App.css'
+import "./App.css";
+import Layout from "./components/layout/Layout";
+import Dashboard from "./pages/dashboard/Dashboard";
 
 function App() {
-
   return (
-    <>
-      <div className="bg-primary text-black p-4">Tailwind is working 🚀</div>
-    </>
+    <Layout>
+      <Dashboard />
+    </Layout>
   );
 }
 
-export default App
+export default App;
