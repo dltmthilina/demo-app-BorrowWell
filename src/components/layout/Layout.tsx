@@ -1,8 +1,9 @@
 import { Bell, HelpCircle, MenuIcon, Search} from "lucide-react";
-import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
+import { Outlet } from "react-router";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout() {
   return (
     <div className="min-h-screen flex flex-col bg-neutral-50">
       <header className="w-full bg-white shadow px-6 py-4 flex items-center justify-between">
@@ -43,8 +44,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </Sheet>
         </div>
       </header>
-
-      <main className="m-4">{children}</main>
+      <div className="m-2">
+        <Outlet />
+      </div>
     </div>
   );
 }
