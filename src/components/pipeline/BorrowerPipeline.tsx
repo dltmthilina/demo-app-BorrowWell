@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Card } from "../ui/card";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import pipelineMockData from "../../mock-data/pipeline.json";
 import useApi from "@/hooks/use-api";
 import type { BorrowerPipeline, BorrowerSummary } from "@/types/types";
+import { AppContext } from "@/context/AppContext";
 
 const tabKeyMap: Record<string, keyof BorrowerPipeline> = {
   New: "new",
@@ -14,22 +15,32 @@ const tabKeyMap: Record<string, keyof BorrowerPipeline> = {
 
 const BorrowerPipeline = () => {
   const [activeTab, setActiveTab] = useState<string>("New");
-  const [activeProfile, setActiveProfile] = useState<BorrowerSummary>();
   const [radioValue, setRadioValue] = useState("active");
   const [pipelineData, setPipelineData] = useState<BorrowerPipeline>();
   const api = useApi();
+  const ctx = useContext(AppContext);
 
   useEffect(() => {
     fetchPipelineData();
   }, []);
 
+  useEffect(() => {
+    if (
+      pipelineData &&
+      !ctx?.activeProfileId &&
+      pipelineData[tabKeyMap[activeTab]] &&
+      pipelineData[tabKeyMap[activeTab]].length > 0
+    ) {
+      ctx?.setActiveProfileId(pipelineData[tabKeyMap[activeTab]][0].id);
+    }
+  }, [pipelineData, activeTab]);
+
   const fetchPipelineData = async () => {
-   /*  const response = await api.get("/api/borrowers/pipeline");
+    /*  const response = await api.get("/api/borrowers/pipeline");
     if (response && response) {
       setPipelineData(response.pipeline_response);
     }  */
-      setPipelineData(pipelineMockData.pipeline_response);
-    
+    setPipelineData(pipelineMockData.pipeline_response);
   };
 
   return (
@@ -50,11 +61,11 @@ const BorrowerPipeline = () => {
               <Card
                 key={borrower.id}
                 className={` p-2 cursor-pointer ${
-                  activeProfile?.id === borrower.id
+                  ctx?.activeProfileId === borrower.id
                     ? "border-primary border-2"
                     : ""
                 }`}
-                onClick={() => setActiveProfile(borrower)}
+                onClick={() => ctx?.setActiveProfileId(borrower.id)}
               >
                 <div className="flex justify-between">
                   <div className="flex flex-col items-start">

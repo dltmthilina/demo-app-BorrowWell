@@ -1,0 +1,82 @@
+{
+  "borrowers": [
+    {
+      "id": "1",
+      "name": "Sarah Dunn",
+      "email": "sarah.dunn@example.com",
+      "phone": "(355)123-4557",
+      "loan_amount": 300000,
+      "status": "In Review",
+      "employment": "At Tech Company",
+      "income": 120000,
+      "existing_loan": 240000,
+      "credit_score": 720,
+      "source_of_funds": "Declared",
+      "risk_signal": "Missing Source of Funds declaration",
+      "ai_flags": [
+        "Income Inconsistent with Bank statements",
+        "High Debt-to-Income Ratio detected"
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Alan Matthews",
+      "email": "alan.matthews@example.com",
+      "phone": "(355)555-1234",
+      "loan_amount": 20000,
+      "status": "In Review",
+      "employment": "Freelancer",
+      "income": 35000,
+      "existing_loan": 5000,
+      "credit_score": 680,
+      "source_of_funds": "Savings",
+      "risk_signal": "High Debt-to-Income Ratio",
+      "ai_flags": ["High Debt-to-Income Ratio detected"]
+    },
+    {
+      "id": "3",
+      "name": "Lisa Carter",
+      "email": "lisa.carter@example.com",
+      "phone": "(355)555-5678",
+      "loan_amount": 450000,
+      "status": "New",
+      "employment": "Manager",
+      "income": 95000,
+      "existing_loan": 0,
+      "credit_score": 750,
+      "source_of_funds": "Declared",
+      "risk_signal": "",
+      "ai_flags": []
+    },
+    {
+      "id": "4",
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "phone": "(355)555-9012",
+      "loan_amount": 50000,
+      "status": "Approved",
+      "employment": "Business Owner",
+      "income": 120000,
+      "existing_loan": 10000,
+      "credit_score": 710,
+      "source_of_funds": "Business Revenue",
+      "risk_signal": "",
+      "ai_flags": []
+    },
+     {
+       "id": "5",
+       "name": "Emily Clark",
+       "email": "emily.clark@example.com",
+       "phone": "(355)555-3456",
+       "loan_amount": 15000,
+       "status": "Approved",
+       "employment": "Teacher",
+       "income": 40000,
+       "existing_loan": 0,
+       "credit_score": 730,
+       "source_of_funds": "Salary",
+       "risk_signal": "",
+       "ai_flags": []
+     }
+  ]
+}
