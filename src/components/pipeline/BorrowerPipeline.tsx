@@ -1,42 +1,37 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card } from "../ui/card";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
+import pipelineMockData from "../../mock-data/pipeline.json";
+import useApi from "@/hooks/use-api";
+import type { BorrowerPipeline, BorrowerSummary } from "@/types/types";
 
+const tabKeyMap: Record<string, keyof BorrowerPipeline> = {
+  New: "new",
+  "In Review": "in_review",
+  Approved: "approved",
+};
 
-const borrowers = [
-  {
-    id: 1,
-    name: "Alice Smith",
-    loanType: "Home",
-    amount: "$250,000",
-    status: "New",
-  },
-  {
-    id: 2,
-    name: "Bob Johnson",
-    loanType: "Auto",
-    amount: "$30,000",
-    status: "In Review",
-  },
-  {
-    id: 3,
-    name: "Carol Lee",
-    loanType: "Personal",
-    amount: "$10,000",
-    status: "Renew",
-  },
-];
+const BorrowerPipeline = () => {
+  const [activeTab, setActiveTab] = useState<string>("New");
+  const [activeProfile, setActiveProfile] = useState<BorrowerSummary>();
+  const [radioValue, setRadioValue] = useState("active");
+  const [pipelineData, setPipelineData] = useState<BorrowerPipeline>();
+  const api = useApi();
 
-const PipelineCard = () => {
+  useEffect(() => {
+    fetchPipelineData();
+  }, []);
 
-     const [activeTab, setActiveTab] = useState("New");
-     const [activeProfile, setActiveProfile] = useState(borrowers[0]);
-     const [radioValue, setRadioValue] = useState("active");
+  const fetchPipelineData = async () => {
+   /*  const response = await api.get("/api/borrowers/pipeline");
+    if (response && response) {
+      setPipelineData(response.pipeline_response);
+    }  */
+      setPipelineData(pipelineMockData.pipeline_response);
+    
+  };
 
-     const filteredBorrowers = borrowers.filter((b) =>
-       activeTab === "Approved" ? b.status === "Renew" : b.status === activeTab
-     );
   return (
     <Card className="w-full p-2">
       <h2 className="text-xl font-bold">Pipeline</h2>
@@ -45,17 +40,17 @@ const PipelineCard = () => {
       </p>
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="mb-2">
-          <TabsTrigger value="New">New</TabsTrigger>
-          <TabsTrigger value="In Review">In Review</TabsTrigger>
-          <TabsTrigger value="Approved">Approved</TabsTrigger>
+          <TabsTrigger value={"New"}>New</TabsTrigger>
+          <TabsTrigger value={"In Review"}>In Review</TabsTrigger>
+          <TabsTrigger value={"Approved"}>Approved</TabsTrigger>
         </TabsList>
         <TabsContent value={activeTab}>
           <div className="space-y-2">
-            {filteredBorrowers.map((borrower) => (
+            {pipelineData?.[tabKeyMap[activeTab]]?.map((borrower) => (
               <Card
                 key={borrower.id}
                 className={` p-2 cursor-pointer ${
-                  activeProfile.id === borrower.id
+                  activeProfile?.id === borrower.id
                     ? "border-primary border-2"
                     : ""
                 }`}
@@ -65,7 +60,7 @@ const PipelineCard = () => {
                   <div className="flex flex-col items-start">
                     <div className="font-semibold">{borrower.name}</div>
                     <div className="text-xs text-muted-foreground">
-                      {borrower.loanType}
+                      {borrower.loan_type}
                     </div>
                   </div>
                   <div className="flex flex-col items-end">
@@ -105,4 +100,4 @@ const PipelineCard = () => {
   );
 };
 
-export default PipelineCard;
+export default BorrowerPipeline;
