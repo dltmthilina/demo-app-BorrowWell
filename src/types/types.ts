@@ -30,3 +30,5 @@ export type BorrowerDetail = {
   risk_signal: string;
   ai_flags: string[];
 };
+
+export type NotificationType = "success" | "error";

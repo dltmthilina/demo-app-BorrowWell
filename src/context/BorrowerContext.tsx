@@ -7,14 +7,14 @@ type PipelineContextType = {
   setActiveProfileId: (id: string) => void;
 };
 
-export const AppContext = createContext<PipelineContextType | undefined>(undefined);
+export const BorrowerContext = createContext<PipelineContextType | undefined>(undefined);
 
-export function ContextProvider({ children }: { children: React.ReactNode }) {
+export function BorrowerProvider({ children }: { children: React.ReactNode }) {
   const [activeTab, setActiveTab] = useState<string>("New");
   const [activeProfileId, setActiveProfileId] = useState<string>("");
 
   return (
-    <AppContext.Provider
+    <BorrowerContext.Provider
       value={{
         activeTab,
         setActiveTab,
@@ -23,7 +23,7 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
       }}
     >
       {children}
-    </AppContext.Provider>
+    </BorrowerContext.Provider>
   );
 }
 
