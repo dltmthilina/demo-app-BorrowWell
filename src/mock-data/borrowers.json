@@ -6,7 +6,7 @@
       "email": "sarah.dunn@example.com",
       "phone": "(355)123-4557",
       "loan_amount": 300000,
-      "status": "In Review",
+      "status": "Renew",
       "employment": "At Tech Company",
       "income": 120000,
       "existing_loan": 240000,

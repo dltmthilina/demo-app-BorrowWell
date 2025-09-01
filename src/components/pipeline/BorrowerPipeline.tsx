@@ -6,6 +6,7 @@ import pipelineMockData from "../../mock-data/pipeline.json";
 import useApi from "@/hooks/use-api";
 import type { BorrowerPipeline, BorrowerSummary } from "@/types/types";
 import { AppContext } from "@/context/AppContext";
+import { formatCurrency } from "@/utils/utils";
 
 const tabKeyMap: Record<string, keyof BorrowerPipeline> = {
   New: "new",
@@ -44,23 +45,32 @@ const BorrowerPipeline = () => {
   };
 
   return (
-    <Card className="w-full p-2">
-      <h2 className="text-xl font-bold">Pipeline</h2>
-      <p className="text-sm text-muted-foreground">
-        Card description goes here.
-      </p>
+    <Card className="w-full px-4 ">
+      <h2 className="text-xl font-semibold">Borrowers</h2>
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="mb-2">
-          <TabsTrigger value={"New"}>New</TabsTrigger>
-          <TabsTrigger value={"In Review"}>In Review</TabsTrigger>
-          <TabsTrigger value={"Approved"}>Approved</TabsTrigger>
+        <TabsList className="mb-2 flex flex-row justify-start border w-full ">
+          <TabsTrigger className="data-[state=active]:bg-primary" value={"New"}>
+            New
+          </TabsTrigger>
+          <TabsTrigger
+            className="data-[state=active]:bg-primary"
+            value={"In Review"}
+          >
+            In Review
+          </TabsTrigger>
+          <TabsTrigger
+            className="data-[state=active]:bg-primary"
+            value={"Approved"}
+          >
+            Approved
+          </TabsTrigger>
         </TabsList>
         <TabsContent value={activeTab}>
-          <div className="space-y-2">
+          <div className="space-y-2 max-h-[270px] md:max-h-[350px] overflow-y-auto">
             {pipelineData?.[tabKeyMap[activeTab]]?.map((borrower) => (
               <Card
                 key={borrower.id}
-                className={` p-2 cursor-pointer ${
+                className={` bg-muted p-2 cursor-pointer ${
                   ctx?.activeProfileId === borrower.id
                     ? "border-primary border-2"
                     : ""
@@ -73,14 +83,16 @@ const BorrowerPipeline = () => {
                     <div className="text-xs text-muted-foreground">
                       {borrower.loan_type}
                     </div>
-                  </div>
-                  <div className="flex flex-col items-end">
-                    <div className="font-bold">{borrower.amount}</div>
                     <span
-                      className={`text-xs px-2 py-1 rounded bg-primary text-white`}
+                      className={`text-xs py-1 rounded bg-muted text-black`}
                     >
                       {borrower.status}
                     </span>
+                  </div>
+                  <div className="flex flex-col items-end justify-center px-4">
+                    <div className="font-bold">
+                      {formatCurrency(borrower.amount)}
+                    </div>
                   </div>
                 </div>
               </Card>
@@ -88,8 +100,8 @@ const BorrowerPipeline = () => {
           </div>
         </TabsContent>
       </Tabs>
-      <div className="mt-4">
-        <div className="text-xs font-bold text-muted-foreground mb-2 tracking-widest">
+      <div>
+        <div className="text-xs font-bold text-black-foreground mb-2 ">
           F-SANATISED ACTIVE
         </div>
         <RadioGroup

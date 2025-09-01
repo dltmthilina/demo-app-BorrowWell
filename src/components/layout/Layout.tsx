@@ -5,7 +5,7 @@ import { Outlet } from "react-router";
 
 export default function Layout() {
   return (
-    <div className="min-h-screen flex flex-col bg-neutral-50">
+    <div className=" flex flex-col bg-neutral-50 h-screen">
       <header className="w-full bg-white shadow px-6 py-4 flex items-center justify-between">
         <div className="flex items-center">
           <h1 className="text-2xl font-bold text-primary">Demo</h1>
@@ -13,14 +13,14 @@ export default function Layout() {
         </div>
 
         <div className="hidden md:flex items-center gap-4">
-          <Button className="p-2 rounded-full hover:bg-neutral-100">
+          <Button className="p-2 rounded-full bg-muted">
             <Search className="w-5 h-5 text-neutral-600" />
           </Button>
-          <Button className="p-2 rounded-full hover:bg-neutral-100">
+          <Button className="p-2 rounded-full bg-muted">
             <HelpCircle className="w-5 h-5 text-neutral-600" />
           </Button>
-          <Button className="p-2 rounded-full hover:bg-neutral-100">
-            <Bell className="w-5 h-5 text-neutral-600" />
+          <Button className="p-2 rounded-full bg-muted ">
+            <Bell className="w-5 h-5 text-black" />
           </Button>
         </div>
         <div className="md:hidden">
@@ -44,7 +44,7 @@ export default function Layout() {
           </Sheet>
         </div>
       </header>
-      <div className="m-2">
+      <div className="h-full ">
         <Outlet />
       </div>
     </div>
