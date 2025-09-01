@@ -32,3 +32,7 @@ export type BorrowerDetail = {
 };
 
 export type NotificationType = "success" | "error";
+
+export type WorkflowResponse = {
+  steps: string[];
+};
