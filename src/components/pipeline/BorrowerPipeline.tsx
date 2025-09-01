@@ -70,7 +70,7 @@ const BorrowerPipeline = () => {
             {pipelineData?.[tabKeyMap[activeTab]]?.map((borrower) => (
               <Card
                 key={borrower.id}
-                className={` bg-muted p-2 cursor-pointer ${
+                className={` bg-muted py-2 px-4 cursor-pointer ${
                   ctx?.activeProfileId === borrower.id
                     ? "border-primary border-2"
                     : ""
@@ -89,7 +89,7 @@ const BorrowerPipeline = () => {
                       {borrower.status}
                     </span>
                   </div>
-                  <div className="flex flex-col items-end justify-center px-4">
+                  <div className="flex flex-col items-end justify-center ">
                     <div className="font-bold">
                       {formatCurrency(borrower.amount)}
                     </div>

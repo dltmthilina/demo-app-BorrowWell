@@ -86,7 +86,7 @@ const BorrowerDetailCard = () => {
                 ))
               )}
             </div>
-            <div className="flex w-full justify-start gap-2">
+            <div className="flex flex-col xl:flex-row w-full justify-start gap-2">
               <Button
                 size="sm"
                 className="bg-primary hover:bg-primary hover:opacity-80 cursor-pointer"
@@ -137,7 +137,7 @@ const BorrowerDetailCard = () => {
 
       {/* Risk Signal */}
       {activeProfile?.risk_signal && (
-        <div className="flex items-center gap-2   p-2 rounded mt-4">
+        <div className="flex items-center gap-2 rounded mt-4">
           <AlertTriangle className="w-5 h-5 text-red-500" />
           <span className="text-sm text-black">
             {activeProfile.risk_signal}
