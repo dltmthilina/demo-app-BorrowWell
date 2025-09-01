@@ -1,69 +1,53 @@
-# React + TypeScript + Vite
+# DemoApp
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+DemoApp is a modern money lending dashboard built with [Vite](https://vitejs.dev/), [ReactJS](https://react.dev/), and [TypeScript](https://www.typescriptlang.org/). The app uses [Tailwind CSS](https://tailwindcss.com/) for utility-first styling and [ShadCN UI](https://ui.shadcn.com) components for a consistent, accessible design system. The project follows a **mobile-first approach** to ensure a responsive and user-friendly experience across all devices.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Mobile-First Responsive Design:**  
+  Layout adapts seamlessly from mobile to desktop using Tailwind’s responsive utilities and grid/flex layouts.
 
-## Expanding the ESLint configuration
+- **UI Components:**  
+  Built with ShadCN UI for tabs, cards, accordions, radio groups, buttons, and more.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **State Management:**  
+  Uses React’s Context API to manage shared state such as active borrower, pipeline tab.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Borrower Pipeline:**  
+  Tabbed interface to view borrowers by status (`New`, `In Review`, `Approved`). Includes radio filters and interactive borrower cards.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- **Borrower Details:**  
+  Center panel displays selected borrower’s details, AI explainability flags, loan summary, and action buttons.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Broker Overview:**  
+  Right panel shows broker information, stats, onboarding workflow (styled as a vertical timeline/stepper), and an AI assistant toggle.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- **Testing:**  
+  End-to-end tests written with [Cypress](https://www.cypress.io/) to validate core user flows, including borrower selection, explainability section toggling, and button actions.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Tech Stack
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Frontend:** Vite + ReactJS + TypeScript
+- **Styling:** Tailwind CSS + ShadCN UI
+- **State Management:** Context API
+- **Icons:** Lucide Icons
+- **Testing:** Cypress (E2E)
+
+## Development Approach
+
+- **Mobile-first:** All layouts and components are designed for optimal mobile usability first, then enhanced for desktop.
+- **Component-based:** Each major UI section is a separate React component for maintainability and reuse.
+- **Mock APIs:** Uses local mock data and API response structures for development and testing.
+
+## Getting Started
+
+1. **Install dependencies:**
+   
+   npm install
+
+2. **Start the development server:**
+   npm run dev
+
+3. **Run Cypress E2E tests:**
+
+   npx cypress open
