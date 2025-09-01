@@ -77,12 +77,14 @@ export default function useApi() {
   ): Promise<T | undefined> => {
     try {
       setIsLoading(true);
-      const res = await axiosInstance.post(url, payload);
+      const res: any = await axiosInstance.post(url, payload);
       if (res.status >= 200 && res.status < 300) {
         if (args?.isSilent !== true) {
           notificationCtx?.showNotification(
             "success",
-            args?.onSuccessMessage ?? "Data was posted successfully"
+            res.message ??
+              args?.onSuccessMessage ??
+              "Data was posted successfully"
           );
         }
         return res.data;

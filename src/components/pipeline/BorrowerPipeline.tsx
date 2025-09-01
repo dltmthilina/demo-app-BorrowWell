@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import pipelineMockData from "../../mock-data/pipeline.json";
 import useApi from "@/hooks/use-api";
 import type { BorrowerPipeline, BorrowerSummary } from "@/types/types";
-import { AppContext } from "@/context/AppContext";
+import { BorrowerContext } from "@/context/BorrowerContext";
 import { formatCurrency } from "@/utils/utils";
 
 const tabKeyMap: Record<string, keyof BorrowerPipeline> = {
@@ -19,7 +19,7 @@ const BorrowerPipeline = () => {
   const [radioValue, setRadioValue] = useState("active");
   const [pipelineData, setPipelineData] = useState<BorrowerPipeline>();
   const api = useApi();
-  const ctx = useContext(AppContext);
+  const ctx = useContext(BorrowerContext);
 
   useEffect(() => {
     fetchPipelineData();
@@ -37,16 +37,16 @@ const BorrowerPipeline = () => {
   }, [pipelineData, activeTab]);
 
   const fetchPipelineData = async () => {
-    /*  const response = await api.get("/api/borrowers/pipeline");
+    /* const response = await api.get<BorrowerPipeline>("/api/borrowers/pipeline");
     if (response && response) {
-      setPipelineData(response.pipeline_response);
-    }  */
+      setPipelineData(response);
+    } */
     setPipelineData(pipelineMockData.pipeline_response);
   };
 
   return (
     <Card className="w-full px-4 ">
-      <h2 className="text-xl font-semibold">Borrowers</h2>
+      <h2 className="text-xl font-semibold">Borrowers in Pipeline</h2>
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="mb-2 flex flex-row justify-start border w-full ">
           <TabsTrigger className="data-[state=active]:bg-primary" value={"New"}>
@@ -66,9 +66,10 @@ const BorrowerPipeline = () => {
           </TabsTrigger>
         </TabsList>
         <TabsContent value={activeTab}>
-          <div className="space-y-2 max-h-[270px] md:max-h-[350px] overflow-y-auto">
+          <div data-testid="pipeline-borrowers" className="space-y-2 max-h-[270px] md:max-h-[350px] overflow-y-auto">
             {pipelineData?.[tabKeyMap[activeTab]]?.map((borrower) => (
               <Card
+                data-testid={`borrower-card-${borrower.id}`}
                 key={borrower.id}
                 className={` bg-muted py-2 px-4 cursor-pointer ${
                   ctx?.activeProfileId === borrower.id

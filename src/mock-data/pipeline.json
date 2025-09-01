@@ -14,42 +14,8 @@
         "loan_type": "Home Loan",
         "amount": 450000,
         "status": "New"
-      },
-      {
-        "id": "6",
-        "name": "Michael Brown",
-        "loan_type": "Personal Loan",
-        "amount": 25000,
-        "status": "New"
-      },
-      {
-        "id": "7",
-        "name": "Jessica Lee",
-        "loan_type": "Auto Loan",
-        "amount": 18000,
-        "status": "New"
-      },
-      {
-        "id": "8",
-        "name": "David Kim",
-        "loan_type": "Business Loan",
-        "amount": 60000,
-        "status": "New"
-      },
-      {
-        "id": "9",
-        "name": "Sophia Turner",
-        "loan_type": "Home Loan",
-        "amount": 320000,
-        "status": "New"
-      },
-      {
-        "id": "10",
-        "name": "William Clark",
-        "loan_type": "Personal Loan",
-        "amount": 15000,
-        "status": "New"
       }
+      
     ],
     "in_review": [
       {
